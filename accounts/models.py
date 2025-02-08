@@ -10,4 +10,4 @@ class CustomUser(AbstractUser):
         (3,'3-KURS'),
         (4,'4-KURS')
     ]
-    degree = models.SmallIntegerField(choices=COURSE_CHOICES,verbose_name='KURS')
+    degree = models.SmallIntegerField(choices=COURSE_CHOICES,verbose_name='KURS',null=True,blank=True)

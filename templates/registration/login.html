@@ -1,23 +1,134 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
+{% load static %}
 {% load crispy_forms_tags %}
 
-{% block title %}Kirish{% endblock title %}
+{% block title %} Login {% endblock title %}
 
 {% block content %}
-<div class="container d-flex justify-content-center align-items-center vh-100">
-    <div class="card shadow p-4" style="max-width: 400px; width: 100%; border-radius: 15px;">
-        <div class="card-body">
-            <h2 class="text-center text-primary mb-4">🔐 Saytga kirish</h2>
-            
-            <form action="" method="post">
+<style>
+    /* Butun sahifani qoplaydi */
+    html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+    }
+    
+    /* Asosiy konteyner */
+    .login-container {
+        height: 100vh;
+        width: 100vw;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    /* Ichki quti */
+    .login-box {
+        height: 100%;
+        width: 100%;
+        display: flex;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        overflow: hidden;
+    }
+
+    /* Chap tomon (Rasm) */
+    .login-left {
+        width: 50%;
+        background-color: #1D2D5B;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .login-left img {
+        max-width: 80%;
+        height: auto;
+    }
+
+    /* O'ng tomon (Login forma) */
+    .login-right {
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 2rem;
+    }
+
+    /* Login form ichidagi input maydonlari */
+    .login-right input {
+        height: 35px; /* Maydon balandligini kichraytiramiz */
+        font-size: 14px;
+    }
+
+    /* Login va register tugmalari */
+    .btn-custom {
+        font-size: 14px;
+        padding: 8px;
+        border-radius: 5px;
+    }
+
+
+    .register-btn {
+        background-color: #ffffff;
+        color: #1D2D5B;
+        border: 2px solid #1D2D5B;
+
+    }
+
+    .register-btn:hover {
+        background-color: #1D2D5B;
+        color: white;
+    }
+
+   
+    @media (max-width: 768px) {
+        .login-box {
+            flex-direction: column;
+        }
+        .login-left {
+            width: 100%;
+            height: 40vh;
+        }
+        .login-right {
+            width: 100%;
+            height: 60vh;
+        }
+    }
+</style>
+
+<div class="login-container">
+    <div class="login-box">
+        <!-- Chap tomon (Rasm) -->
+        <div class="login-left d-none d-md-flex">
+            <img src="{% static 'images/study.svg' %}" alt="Study">
+        </div>
+
+        <!-- O'ng tomon (Login forma) -->
+        <div class="login-right">
+            <div class="text-center mb-3">
+                <img src="{% static 'images/logo-md.png' %}" alt="Logo" width="70">
+                <h5 class="mt-2">LEARNING MANAGEMENT SYSTEM</h5>
+            </div>
+
+            <form method="POST">
                 {% csrf_token %}
-                {{ form|crispy }}  
-                <button type="submit" class="btn btn-warning w-100 fw-bold mt-3">
-                    🚀 Kirish
+                <div class="mb-2">
+                    {{ form.username|as_crispy_field }}
+                </div>
+                <div class="mb-2">
+                    {{ form.password|as_crispy_field }}
+                </div>
+                <button type="submit" class="btn w-100 btn-custom" style="background-color: #1D2D5B; border-color: #1D2D5B; color: white; ">
+                    Kirish
                 </button>
             </form>
-            
-            <div class="text-center mt-3">
+
+            <!-- Ro‘yxatdan o‘tish tugmasi -->
+            <div class="text-center mt-2">
+                <a href="{% url 'register' %}" class="btn register-btn w-100 btn-custom">Ro‘yxatdan o‘tish</a>
+            </div>
+                        <div class="text-center mt-3">
                 <a href="{% url 'password_reset' %}" class="text-decoration-none text-muted">
                     Parolni unutdingizmi?
                 </a>
@@ -26,3 +137,6 @@
     </div>
 </div>
 {% endblock content %}
+
+
+
