@@ -1,6 +1,7 @@
 from django.shortcuts import render,redirect
 from .forms import CustomUserCreationForm
-from django.contrib.auth import login
+from django.contrib.auth import login,logout
+from django.http import HttpResponseForbidden
 # Create your views here.
 
 def register(request):
@@ -17,3 +18,9 @@ def register(request):
         'form':form
     }
     return render(request,'registration/register.html',context=context)
+
+def logout_view(request):
+    if request.method == 'POST':
+        logout(request)
+        return redirect('home')  # 'home' URL-ga qaytish
+    return HttpResponseForbidden("Only POST requests are allowed.")

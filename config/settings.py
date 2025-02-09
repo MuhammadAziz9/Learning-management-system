@@ -124,7 +124,7 @@ AUTH_USER_MODEL = 'accounts.CustomUser'
 
 
 LOGIN_REDIRECT_URL = 'main'
-LOGOUT_REDIRECT_URL = '/login/'
+LOGOUT_REDIRECT_URL = 'login'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap5'
 CRISPY_ALLOWED_TEMPLATE_PACK = 'bootstrap5'

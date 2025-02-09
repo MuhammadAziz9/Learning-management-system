@@ -57,23 +57,22 @@
 
     /* Login form ichidagi input maydonlari */
     .login-right input {
-        height: 35px; /* Maydon balandligini kichraytiramiz */
+        height: 40px; /* Maydon balandligini kichraytiramiz */
         font-size: 14px;
     }
 
     /* Login va register tugmalari */
     .btn-custom {
         font-size: 14px;
-        padding: 8px;
+        padding: 6px;
         border-radius: 5px;
+        height: 40px; /* Tugmaning balandligini kichraytiramiz */
     }
-
 
     .register-btn {
         background-color: #ffffff;
         color: #1D2D5B;
         border: 2px solid #1D2D5B;
-
     }
 
     .register-btn:hover {
@@ -81,7 +80,6 @@
         color: white;
     }
 
-   
     @media (max-width: 768px) {
         .login-box {
             flex-direction: column;
@@ -110,33 +108,42 @@
                 <img src="{% static 'images/logo-md.png' %}" alt="Logo" width="70">
                 <h5 class="mt-2">LEARNING MANAGEMENT SYSTEM</h5>
             </div>
-
-            <form method="POST">
-                {% csrf_token %}
-                <div class="mb-2">
-                    {{ form.username|as_crispy_field }}
-                </div>
-                <div class="mb-2">
-                    {{ form.password|as_crispy_field }}
-                </div>
-                <button type="submit" class="btn w-100 btn-custom" style="background-color: #1D2D5B; border-color: #1D2D5B; color: white; ">
-                    Kirish
-                </button>
-            </form>
-
-            <!-- Ro‘yxatdan o‘tish tugmasi -->
-            <div class="text-center mt-2">
-                <a href="{% url 'register' %}" class="btn register-btn w-100 btn-custom">Ro‘yxatdan o‘tish</a>
-            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-2"></div>
+                    <div class="col-8">
+                        <form method="POST">
+                            {% csrf_token %}
+                            <div class="mb-2">
+                                {{ form.username|as_crispy_field }}
+                            </div>
+                            <div class="mb-2">
+                                {{ form.password|as_crispy_field }}
+                            </div>
+                            <button type="submit" class="btn w-100 btn-custom" style="background-color: #1D2D5B; border-color: #1D2D5B; color: white;">
+                                Kirish
+                            </button>
+                        </form>
+            
+                        <!-- Ro‘yxatdan o‘tish tugmasi -->
+                        <div class="text-center mt-2">
+                            <a href="{% url 'register' %}" class="btn register-btn w-100 btn-custom">Ro‘yxatdan o‘tish</a>
+                        </div>
+            
                         <div class="text-center mt-3">
-                <a href="{% url 'password_reset' %}" class="text-decoration-none text-muted">
-                    Parolni unutdingizmi?
-                </a>
+                            <a href="{% url 'password_reset' %}" class="text-decoration-none text-muted">
+                                Parolni unutdingizmi?
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-2"></div>
+                </div>
             </div>
         </div>
     </div>
 </div>
 {% endblock content %}
+
 
 
 
