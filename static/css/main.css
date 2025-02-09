@@ -1,0 +1,240 @@
+.sidebar {
+    width: 250px;
+    height: 100vh;
+    background: linear-gradient(180deg, #1D2D5B 0%, #3F4A80 100%);
+    color: white;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding-top: 60px;
+    transition: transform 0.3s ease-in-out;
+    z-index: 999;
+    box-shadow: 4px 0px 10px rgba(0, 0, 0, 0.2);
+}
+
+.sidebar a {
+    display: flex;
+    align-items: center;
+    padding: 12px 20px;
+    color: white;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.sidebar a:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    transform: translateX(10px);
+}
+
+.sidebar i {
+    margin-right: 12px;
+}
+
+/* Asosiy kontent qismi */
+.content {
+    margin-top: 40px;
+    margin-left: 250px;
+    padding: 20px;
+    transition: margin-left 0.3s ease-in-out;
+    background-color: #f7f7f7;
+}
+
+/* Navbar */
+.navbar {
+    background-color: #ECECF1;
+    color: #1D2D5B;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+.navbar .menu-btn {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+/* Profil rasmi */
+.profile-img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid white;
+}
+
+/* Yon panel yopilganda */
+.sidebar.hidden {
+    transform: translateX(-250px);
+}
+
+.content.full-width {
+    margin-left: 0;
+}
+
+/* Mobil ekranlar uchun */
+@media (max-width: 768px) {
+    .sidebar {
+        transform: translateX(-250px);
+    }
+    .content {
+        margin-left: 0;
+    }
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #1D2D5B;
+    min-width: 180px;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    border-radius: 8px;
+    right: 0;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.dropdown-content a {
+    color: white;
+    padding: 12px 16px;
+    text-decoration: none;
+    font-weight: bold;
+    display: block;
+    font-size: 14px;
+    transition: background-color 0.3s ease, padding-left 0.3s ease;
+}
+
+
+
+/* Icon styles */
+.sidebar a .icon, .dropdown-content a .icon {
+    margin-right: 10px;
+}
+
+/* Logo o'lchamini kichraytirish */
+.logo-img {
+    height: 25px; /* Kichikroq logo */
+    width: auto;  
+}
+
+.navbar .logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+    /* Butun sahifani qoplaydi */
+    html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+    }
+    
+    /* Asosiy konteyner */
+    .login-container {
+        height: 100vh;
+        width: 100vw;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    /* Ichki quti */
+    .login-box {
+        height: 100%;
+        width: 100%;
+        display: flex;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        overflow: hidden;
+    }
+
+    /* Chap tomon (Rasm) */
+    .login-left {
+        width: 50%;
+        background-color: #1D2D5B;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .login-left img {
+        max-width: 80%;
+        height: auto;
+    }
+
+    /* O'ng tomon (Login forma) */
+    .login-right {
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 2rem;
+    }
+
+    /* Login form ichidagi input maydonlari */
+    .login-right input {
+        height: 40px; /* Maydon balandligini kichraytiramiz */
+        font-size: 14px;
+    }
+
+    /* Login va register tugmalari */
+    .btn-custom {
+        font-size: 14px;
+        padding: 6px;
+        border-radius: 5px;
+        height: 40px; /* Tugmaning balandligini kichraytiramiz */
+    }
+
+    .register-btn {
+        background-color: #ffffff;
+        color: #1D2D5B;
+        border: 2px solid #1D2D5B;
+    }
+
+    .register-btn:hover {
+        background-color: #1D2D5B;
+        color: white;
+    }
+
+    @media (max-width: 768px) {
+        .login-box {
+            flex-direction: column;
+        }
+        .login-left {
+            width: 100%;
+            height: 40vh;
+        }
+        .login-right {
+            width: 100%;
+            height: 60vh;
+        }
+    }
+
+
+
+
+

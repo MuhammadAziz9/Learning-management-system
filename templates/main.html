@@ -2,265 +2,27 @@
 {% load static %}
 {% block content %}
 
-<style>
-    /* Yon panel */
-    .sidebar {
-        width: 250px;
-        height: 100vh;
-        background: linear-gradient(180deg, #1D2D5B 0%, #3F4A80 100%);
-        color: white;
-        position: fixed;
-        top: 0;
-        left: 0;
-        padding-top: 60px;
-        transition: transform 0.3s ease-in-out;
-        z-index: 999;
-        box-shadow: 4px 0px 10px rgba(0, 0, 0, 0.2);
-    }
-
-    .sidebar a {
-        display: flex;
-        align-items: center;
-        padding: 12px 20px;
-        color: white;
-        text-decoration: none;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        font-size: 16px;
-        transition: background-color 0.3s ease;
-    }
-
-    .sidebar a:hover {
-        background-color: rgba(255, 255, 255, 0.1);
-        transform: translateX(10px);
-    }
-
-    .sidebar i {
-        margin-right: 12px;
-    }
-
-    /* Asosiy kontent qismi */
-    .content {
-        margin-top: 40px;
-        margin-left: 250px;
-        padding: 20px;
-        transition: margin-left 0.3s ease-in-out;
-        background-color: #f7f7f7;
-    }
-
-    /* Navbar */
-    .navbar {
-        background-color: #ECECF1;
-        color: #1D2D5B;
-        padding: 10px 20px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        position: fixed;
-        width: 100%;
-        top: 0;
-        left: 0;
-        z-index: 1000;
-    }
-
-    .navbar .menu-btn {
-        background: none;
-        border: none;
-        color: white;
-        font-size: 24px;
-        cursor: pointer;
-    }
-
-    /* Profil rasmi */
-    .profile-img {
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        cursor: pointer;
-        border: 2px solid white;
-    }
-
-    /* Yon panel yopilganda */
-    .sidebar.hidden {
-        transform: translateX(-250px);
-    }
-
-    .content.full-width {
-        margin-left: 0;
-    }
-
-    /* Mobil ekranlar uchun */
-    @media (max-width: 768px) {
-        .sidebar {
-            transform: translateX(-250px);
-        }
-        .content {
-            margin-left: 0;
-        }
-    }
-
-    .dropdown {
-        position: relative;
-        display: inline-block;
-    }
-
-    .dropdown-content {
-        display: none;
-        position: absolute;
-        background-color: #1D2D5B;
-        min-width: 180px;
-        box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
-        z-index: 1;
-        border-radius: 8px;
-        right: 0;
-        opacity: 0;
-        transform: translateY(-10px);
-        transition: opacity 0.3s ease, transform 0.3s ease;
-    }
-
-    .dropdown:hover .dropdown-content {
-        display: block;
-        opacity: 1;
-        transform: translateY(0);
-    }
-
-    .dropdown-content a {
-        color: white;
-        padding: 12px 16px;
-        text-decoration: none;
-        font-weight: bold;
-        display: block;
-        font-size: 14px;
-        transition: background-color 0.3s ease, padding-left 0.3s ease;
-    }
-
-
-
-    /* Icon styles */
-    .sidebar a .icon, .dropdown-content a .icon {
-        margin-right: 10px;
-    }
-
-    /* Logo o'lchamini kichraytirish */
-    .logo-img {
-        height: 25px; /* Kichikroq logo */
-        width: auto;  /* Kenglikni avtomatik sozlash */
-    }
-
-    /* Navbarda logo joylashuvi */
-    .navbar .logo {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-</style>
-
-<!-- Navbar -->
-<div class="navbar">
-    <a href="#" class="logo" onclick="toggleSidebar()">
-        <img src="{% static 'images/logo-md.png' %}" alt="Logo" class="logo-img">
-    </a>
-    <h4 class="m-0" >LMS for Azizbek's University</h4>
-    <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" role="button" data-bs-toggle="dropdown">
-            <img src="/" 
-                 width="30" height="30" class="rounded-circle me-2" alt="Avatar">
-        </a>
-        <ul class="dropdown-menu dropdown-menu-end dropdown-content">
-            <li class="d-flex justify-content-center">
-                <span class="fw-bold" style="color: white ; font-weight: bold;">{{ user.username | title }}</span>
-            </li>
-            <hr>
-            <li><a class="dropdown-item" style="text-align: center;" href="{% url 'password_change' %}">Parolni almashtirish</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li>
-                <form method="POST" action="{% url 'logout' %}">
-                    {% csrf_token %}
-                    <button type="submit" class="dropdown-item" style=" color: red; font-weight: bold; text-align: center;">Chiqib ketish</button>
-                </form>
-            </li>                                 
-        </ul>
-    </li>
-</div>
-
-<!-- Yon panel -->
-<div class="sidebar" id="sidebar">
-    <a href="#"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
-    <a href="#"><i class="fas fa-book"></i> Fan tanlov</a>
-    <a href="#"><i class="fas fa-chalkboard-teacher"></i> Mening fanlarim</a>
-    <a href="#"><i class="fas fa-calendar-alt"></i> Dars jadvali</a>
-    <a href="#"><i class="fas fa-sync-alt"></i> Qayta o‘qish</a>
-    <a href="#"><i class="fas fa-graduation-cap"></i> Yakuniy</a>
-    <a href="#"><i class="fas fa-clipboard-list"></i> Shaxsiy reja</a>
-    <a href="#"><i class="fas fa-info-circle"></i> Ma’lumot</a>
-    <a href="#"><i class="fas fa-poll"></i> So‘rovnoma</a>
-    <a href="#"><i class="fas fa-user-cog"></i> Talaba xizmatlari</a>
-    <a href="#"><i class="fas fa-briefcase"></i> Diplom ishi</a>
-</div>
-
-<!-- Asosiy kontent qismi -->
 <div class="content" id="main-content">
     <div class="row mt-3">
-        <!-- E'lonlar kartochkalari -->
-        <div class="col-md-4">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Hurmatli 1-bosqich talabalar!</h5>
-                    <p class="card-text">03.01.2025</p>
-                    <a href="#" class="btn btn-primary btn-sm">Batafsil</a>
+        {% for new in news %}
+        <div class="col-md-4" style="margin-bottom:25px ;">
+            <div class="card" style="height: 350px; overflow: hidden;">
+                <div class="card-body" style="height: 100%; overflow-y: auto;">
+                    <h5 class="card-title">{{new.title}}</h5>
+                    <p class="card-text">{{new.text}}</p>
+                    <p class="date text-muted small">
+                        <i class="bi bi-calendar-event"></i> {{ new.date|date:"F j, Y" }}
+                    </p>
                 </div>
             </div>
         </div>
-        
-        <div class="col-md-4" style="margin-bottom: 20px;">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Qayta o‘qishda qatnashish shart!</h5>
-                    <p class="card-text">01.07.2024</p>
-                    <a href="#" class="btn btn-primary btn-sm">Batafsil</a>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-4">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Yakuniy nazorat</h5>
-                    <p class="card-text">31.05.2024</p>
-                    <a href="#" class="btn btn-primary btn-sm">Batafsil</a>
-                </div>
-            </div>
-        </div>
-        
-        <div class="col-md-4">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Eslatma!!!</h5>
-                    <p class="card-text">To‘lov kontrakt muddati!</p>
-                    <a href="#" class="btn btn-primary btn-sm">Batafsil</a>
-                </div>
-            </div>
-        </div>
+        {% endfor %}
     </div>
 </div>
 
-<!-- JavaScript kod -->
-<script src="https://kit.fontawesome.com/a076d05399.js"></script> <!-- FontAwesome -->
-<script>
-    function toggleSidebar() {
-        var sidebar = document.getElementById("sidebar");
-        var content = document.getElementById("main-content");
-
-        if (sidebar.classList.contains("hidden")) {
-            sidebar.classList.remove("hidden");
-            content.classList.remove("full-width");
-        } else {
-            sidebar.classList.add("hidden");
-            content.classList.add("full-width");
-        }
-    }
-</script>
-
 {% endblock content %}
+
+
 
 
 

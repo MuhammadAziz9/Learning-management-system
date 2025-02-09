@@ -27,6 +27,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     #internal
     'accounts',
+    'interface',
 
     #external
     'crispy_forms',
@@ -112,6 +113,9 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / 'static']
 STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR/'media'
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
