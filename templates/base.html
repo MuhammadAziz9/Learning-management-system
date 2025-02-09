@@ -1,23 +1,19 @@
-{% extends 'base.html' %}
+{% extends 'main.html' %}
 {% block content %}
-
-<div class="content" id="main-content">
-    <div class="row mt-3">
-        {% for new in news %}
-        <div class="col-md-4" style="margin-bottom:25px ;">
-            <div class="card" style="height: 350px; overflow: hidden;">
-                <div class="card-body" style="height: 100%; overflow-y: auto;">
-                    <h5 class="card-title">{{new.title}}</h5>
-                    <p class="card-text">{{new.text}}</p>
-                    <p class="date text-muted small">
-                        <i class="bi bi-calendar-event"></i> {{ new.date|date:"F j, Y" }}
-                    </p>
-                </div>
+<div class="row mt-3">
+    {% for new in news %}
+    <div class="col-md-4" style="margin-bottom:25px ;">
+        <div class="card" style="height: 350px; overflow: hidden;">
+            <div class="card-body" style="height: 100%; overflow-y: auto;">
+                <h5 class="card-title">{{new.title}}</h5>
+                <p class="card-text">{{new.text}}</p>
+                <p class="date text-muted small">
+                    <i class="bi bi-calendar-event"></i> {{ new.date|date:"F j, Y" }}
+                </p>
             </div>
         </div>
-        {% endfor %}
     </div>
+    {% endfor %}
 </div>
-
 {% endblock content %}
 
