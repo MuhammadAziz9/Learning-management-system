@@ -200,13 +200,11 @@
         height: 40px; /* Maydon balandligini kichraytiramiz */
         font-size: 14px;
     }
-
-    /* Login va register tugmalari */
     .btn-custom {
         font-size: 14px;
         padding: 6px;
         border-radius: 5px;
-        height: 40px; /* Tugmaning balandligini kichraytiramiz */
+        height: 40px; 
     }
 
     .register-btn {

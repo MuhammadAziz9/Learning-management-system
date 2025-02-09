@@ -4,12 +4,12 @@ from .models import News
 # Create your views here.
 
 @login_required
-def main(request):
+def base(request):
     news = News.objects.all()
     context = {
         'news':news,
         'user':request.user
     }
-    return render(request,'main.html',context=context)
+    return render(request,'base.html',context=context)
 
 
