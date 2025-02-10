@@ -9,3 +9,12 @@ class News(models.Model):
 
     def __str__(self):
         return self.title
+    
+class Todo(models.Model):
+    subject_name = models.CharField(max_length=50)
+    description = models.CharField(max_length=400)
+    due_date = models.DateTimeField()
+
+    def __str__(self):
+        return self.subject_name
+    

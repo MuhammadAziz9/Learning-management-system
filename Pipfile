@@ -7,6 +7,13 @@ name = "pypi"
 django = "*"
 django-crispy-forms = "*"
 crispy-bootstrap5 = "*"
+wikipedia-api = "*"
+wikipedia = "*"
+youtube-search2 = "*"
+requests = "*"
+youtube-search-python = "*"
+yt-dlp = "*"
+pytube = "*"
 
 [dev-packages]
 

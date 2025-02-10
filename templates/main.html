@@ -40,14 +40,18 @@
 <div class="sidebar" id="sidebar">
     <a href="{% url 'base' %}"><i class="fas fa-tachometer-alt"></i><span class="link-text"> Dashboard</span></a>
     <a href="#"><i class="fas fa-chalkboard-teacher"></i><span class="link-text"> Kurslar</span></a>
-    <a href="#"><i class="fab fa-youtube"></i><span class="link-text"> Youtube</span></a>
-    <a href="#"><i class="fas fa-chalkboard-teacher"></i><span class="link-text"> Wikipedia</span></a>
-    <a href="#"><i class="fas fa-tasks"></i><span class="link-text">Todo List</span></a>
+    <a href="{% url 'wikipedia'  %}"><i class="fas fa-chalkboard-teacher"></i><span class="link-text"> Wikipedia</span></a>
+    <a href="{% url 'todo' %}"><i class="fas fa-tasks"></i><span class="link-text">Todo List</span></a>
 </div>
 <div class="content" id="main-content">
     {% block content %}
     {% endblock content %}
 </div>
+
+<footer class="bg-dark text-white text-center py-3 mt-5">
+    <p class="mb-0">© 2025 <strong>MuhammadAziz Coder</strong>. Barcha huquqlar himoyalangan.</p>
+</footer>
+
 
 <script>
     function toggleSidebar() {
